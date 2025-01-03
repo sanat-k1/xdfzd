@@ -25,21 +25,21 @@ pipeline {
             }
         }
         stage('Setup Workspace') {
-            steps {
-                script {
-                    // Define the local source path where the files are located
-                    def localSourcePath = 'C:\\path\\to\\your\\local\\files' // Replace with your actual path
-                    def workspacePath = env.WORKSPACE
+    steps {
+        script {
+            // Assuming files are part of the Git repository
+            def workspacePath = env.WORKSPACE
 
-                    // Copy necessary files into the Jenkins workspace
-                    bat """
-                    copy ${localSourcePath}\\delivery_metrics.py ${workspacePath}\\
-                    copy ${localSourcePath}\\prometheus.yml ${workspacePath}\\
-                    copy ${localSourcePath}\\alert_rules.yml ${workspacePath}\\
-                    """
-                }
-            }
+            // Copying files from the workspace (after git checkout)
+            bat """
+            copy ${workspacePath}\\delivery_metrics.py ${workspacePath}\\
+            copy ${workspacePath}\\prometheus.yml ${workspacePath}\\
+            copy ${workspacePath}\\alert_rules.yml ${workspacePath}\\
+            """
         }
+    }
+}
+
         stage('Build Docker Image') {
             steps {
                 bat 'docker build -t delivery_metrics .'
