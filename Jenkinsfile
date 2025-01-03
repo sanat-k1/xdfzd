@@ -33,7 +33,7 @@ def workspacePath = env.WORKSPACE
 bat """
 copy ${localSourcePath}\\delivery_metrics.py ${workspacePath}\\
 copy ${localSourcePath}\\prometheus.yml ${workspacePath}\\
-copy ${localSourcePath}\\alert_rules.yml ${workspacePath}\\
+copy ${localSourcePath}\\alerts_rules.yml ${workspacePath}\\
 """
 
         }
