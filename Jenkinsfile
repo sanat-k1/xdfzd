@@ -27,15 +27,15 @@ pipeline {
         stage('Setup Workspace') {
     steps {
         script {
-            // Assuming files are part of the Git repository
-            def workspacePath = env.WORKSPACE
+           def localSourcePath = 'C:\\Users\\sanat\\Desktop\\docker\\8\\delivery_monitoring'  // Use the correct path
+def workspacePath = env.WORKSPACE
 
-            // Copying files from the workspace (after git checkout)
-            bat """
-            copy ${workspacePath}\\delivery_metrics.py ${workspacePath}\\
-            copy ${workspacePath}\\prometheus.yml ${workspacePath}\\
-            copy ${workspacePath}\\alert_rules.yml ${workspacePath}\\
-            """
+bat """
+copy ${localSourcePath}\\delivery_metrics.py ${workspacePath}\\
+copy ${localSourcePath}\\prometheus.yml ${workspacePath}\\
+copy ${localSourcePath}\\alert_rules.yml ${workspacePath}\\
+"""
+
         }
     }
 }
